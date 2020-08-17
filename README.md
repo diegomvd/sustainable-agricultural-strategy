@@ -1,6 +1,6 @@
 # sustainable-agricultural-strategy
 
-This project contains python scripts used to explore a spatially implicit dynamical model of the coupled evolution of a human population and their environment as a function of agricultural land use planning. The model and its analysis is featured in an article you can find in https://www.biorxiv.org/content/10.1101/2020.07.27.222422v1.
+This project contains python scripts used to explore a spatially implicit dynamical model of the coupled evolution of a human population and their environment as a function of agricultural land use planning. The model and its analysis are featured in an article you can find in https://www.biorxiv.org/content/10.1101/2020.07.27.222422v1.
 
 Two dimensions of agricultural land use planning are considered: expansion and intensification. Each one is controlled by a different parameter in a way that all the strategies laying in the 2D expansion-intensification plane can be explored. 
 
