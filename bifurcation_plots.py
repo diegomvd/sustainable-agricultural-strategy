@@ -1,7 +1,28 @@
 # -*- coding: utf-8 -*-
 
 """
-TEMPORAL DYANMICS PLOTS IN THE K,I PLANE
+BIFURCATION PLOTS AS A FUNCTION OF THE LAND USE STRATEGY PARAMETER FOR DIFFERENT
+VALUES OF THE LAND RECOVERY RATE
+
+model variables:
+p=human population density
+n=natural Land
+a=agricultural land
+
+model parameters:
+
+1) b=land use strategy (0->extensive agriculture; 1->intensive agriculture)
+2) K=maximum land conversion effort
+3) Kmin=minimum land conversion effort
+NB: actual conversion effort = Kmin+(K-Kmin)*(1-b)
+
+4) R=recovery rate of degraded land
+5) D=degradation rate of natural land
+
+6) E=maximum degradation rate of agricultural land
+NB: actual degradation rate = E*b
+
+7) Q=relative importance of natural land to agricultural production
 """
 
 import numpy as np

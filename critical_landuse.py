@@ -1,8 +1,34 @@
 # -*- coding: utf-8 -*-
 
 """
-REAL PART OF EIGENVALUES FOR VISUALIZATION OF THE FOLD BIFURCATION
+CALCULATION OF THE CRITICAL LAND USE STRATEGY VALUES FOR DIFFERENT VALUES OF THE
+LAND RECOVERY AND DEGRADATION PARAMETERS (2 CONTOUR PLOTS).
+CALCULATION OF THE SIZE OF THE COLLAPSE REGION AS A FUNCTION OF THE LAND RECOVERY
+RATE.
+
+THE CODE CARRIES A BIFURCATION ANALYSIS TO IDENTIFY THE CRITICAL VALUES OF b
+
+model variables:
+pop=human population density
+l0=natural Land
+l1=degraded land
+
+model parameters:
+
+1) b=land use strategy (0->extensive agriculture; 1->intensive agriculture)
+2) K=maximum land conversion effort
+3) Kmin=minimum land conversion effort
+NB: actual conversion effort = Kmin+(K-Kmin)*(1-b)
+
+4) R=recovery rate of degraded land
+5) D=degradation rate of natural land
+
+6) E=maximum degradation rate of agricultural land
+NB: actual degradation rate = E*b
+
+7) Q=relative importance of natural land to agricultural production
 """
+
 
 import numpy as np
 from scipy import optimize # LIBRARY NEEDED FOR ROOT FINDING

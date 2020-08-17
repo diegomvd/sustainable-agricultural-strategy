@@ -1,7 +1,27 @@
 # -*- coding: utf-8 -*-
 
 """
-TEMPORAL DYANMICS PLOTS IN THE K,I PLANE
+TEMPORAL DYNAMICS (plots for 3 different values of the land use strategy)
+
+model variables:
+pop=human population density
+l0=natural Land
+l1=degraded land
+
+model parameters:
+
+1) b=land use strategy (0->extensive agriculture; 1->intensive agriculture)
+2) K=maximum land conversion effort
+3) Kmin=minimum land conversion effort
+NB: actual conversion effort = Kmin+(K-Kmin)*(1-b)
+
+4) R=recovery rate of degraded land
+5) D=degradation rate of natural land
+
+6) E=maximum degradation rate of agricultural land
+NB: actual degradation rate = E*b
+
+7) Q=relative importance of natural land to agricultural production
 """
 
 import numpy as np
@@ -130,7 +150,7 @@ def save(state,prod,t,datafile):
 
     return None
 
-def plot(filename1,filename2,filename3,filename4):
+def plot(filename1,filename2,filename3):
 
     sns.set_context('paper')
     style.use('seaborn-paper')
@@ -138,11 +158,10 @@ def plot(filename1,filename2,filename3,filename4):
     data2plot1=np.loadtxt(filename1)
     data2plot2=np.loadtxt(filename2)
     data2plot3=np.loadtxt(filename3)
-    data2plot4=np.loadtxt(filename4)
 
     sns.set_style("ticks")
 
-    fig, ((ax1, ax3, ax5, ax7), (ax2, ax4, ax6, ax8), (ax9, ax10, ax11, ax12)) = plt.subplots(3,4,sharex='col',sharey='row',gridspec_kw={'hspace':0.1,'wspace': 0.1})
+    fig, ((ax1, ax3, ax5), (ax2, ax4, ax6)) = plt.subplots(2,3,sharex='col',sharey='row',gridspec_kw={'hspace':0.01,'wspace': 0.1})
 ################################################################################
 
     time=data2plot1[:,0]
@@ -152,23 +171,14 @@ def plot(filename1,filename2,filename3,filename4):
     a=np.ones(len(data2plot1[:,0]))-l0-l1
 
     ax1.plot(time,population,color='tab:blue',linewidth=2,alpha=0.7)
-    ax1.set_title(r"$\beta=\beta_{c,1}-\delta\beta$")
 
     ax2.plot(time,1*l0,linewidth=2,color='tab:green',label="N",alpha=0.7)
-    # ax2.plot(time,1*l1,linewidth=2,color='tab:red',label="D",alpha=0.7)
     ax2.plot(time,1*a,linewidth=2,color='tab:orange',label="A",alpha=0.7)
-
-    beta2=0.4106108*0.4106108*np.ones(len(l0))
-    frac=l0/l1
-    ax9.plot(time,frac,linewidth=2,color='tab:purple', label="N/D")
-    ax9.plot(time,beta2,linewidth=1,color='0.2',linestyle='dashed',label=r'$(d\beta/r)^2$')
-
-    ax9.set_yscale('log')
-    ax9.set_ylim(0.1,100)
+    ax2.plot(time,1*l1,linewidth=2,color='tab:red',label="D",alpha=0.7)
 
     #ax1.grid(b=True);ax2.grid(b=True);ax3.grid(b=True);ax4.grid(b=True)
-    ax1.set(ylabel="Population");ax2.set(ylabel=r"Land");ax9.set(ylabel=r"N/D");
-
+    ax1.set(ylabel="Population");ax2.set(ylabel=r"Land");
+    ax1.set_title(r"$\beta=0.2$")
 
 ################################################################################
 
@@ -179,19 +189,12 @@ def plot(filename1,filename2,filename3,filename4):
     a=np.ones(len(data2plot2[:,0]))-l0-l1
 
     ax3.plot(time,population,color='tab:blue',linewidth=2,alpha=0.7)
-    ax3.set_title(r"$\beta=\beta_{c,1}+\delta\beta$")
+    ax3.set_title(r"$\beta=0.5$")
 
     ax4.plot(time,1*l0,linewidth=2,color='tab:green',alpha=0.7)
-    # ax4.plot(time,1*l1,linewidth=2,color='tab:red',alpha=0.7)
     ax4.plot(time,1*a,linewidth=2,color='tab:orange',alpha=0.7)
+    ax4.plot(time,1*l1,linewidth=2,color='tab:red',alpha=0.7)
 
-    beta2=0.4106109*0.4106109*np.ones(len(l0))
-    frac=l0/l1
-    ax10.plot(time,frac,linewidth=2,color='tab:purple')
-    ax10.plot(time,beta2,linewidth=1,color='0.2',linestyle='dashed')
-
-    ax10.set_yscale('log')
-    ax10.set_ylim(0.1,100)
 
 ################################################################################
 
@@ -202,44 +205,14 @@ def plot(filename1,filename2,filename3,filename4):
     a=np.ones(len(data2plot3[:,0]))-l0-l1
 
     ax5.plot(time,population,color='tab:blue',linewidth=2,alpha=0.7)
-    ax5.set_title(r"$\beta=\beta_{c,2}-\delta\beta$")
+    ax5.set_title(r"$\beta=0.8$")
 
     ax6.plot(time,1*l0,linewidth=2,color='tab:green',alpha=0.7)
-    # ax6.plot(time,1*l1,linewidth=2,color='tab:red',alpha=0.7)
     ax6.plot(time,1*a,linewidth=2,color='tab:orange',alpha=0.7)
+    ax6.plot(time,1*l1,linewidth=2,color='tab:red',alpha=0.7)
 
-    beta2=0.7272029*0.7272029*np.ones(len(l0))
-    frac=l0/l1
-    ax11.plot(time,frac,linewidth=2,color='tab:purple')
-    ax11.plot(time,beta2,linewidth=1,color='0.2',linestyle='dashed')
 
-    ax11.set_yscale('log')
-    ax11.set_ylim(0.1,100)
-
-################################################################################
-
-    time=data2plot4[:,0]
-    population=data2plot4[:,1]
-    l0=data2plot4[:,2]
-    l1=data2plot4[:,3]
-    a=np.ones(len(data2plot4[:,0]))-l0-l1
-
-    ax7.plot(time,population,color='tab:blue',linewidth=2,alpha=0.7)
-    ax7.set_title(r"$\beta=\beta_{c,2}+\delta\beta$")
-
-    ax8.plot(time,1*l0,linewidth=2,color='tab:green',alpha=0.7)
-    # ax8.plot(time,1*l1,linewidth=2,color='tab:red',alpha=0.7)
-    ax8.plot(time,1*a,linewidth=2,color='tab:orange',alpha=0.7)
-
-    beta2=0.727203*0.727203*np.ones(len(l0))
-    frac=l0/l1
-    ax12.plot(time,frac,linewidth=2,color='tab:purple')
-    ax12.plot(time,beta2,linewidth=1,color='0.2',linestyle='dashed')
-
-    ax12.set_yscale('log')
-    ax12.set_ylim(0.1,100)
-
-    ax9.set(xlabel="Time\n(a)");ax10.set(xlabel="Time\n(b)");ax11.set(xlabel="Time\n(c)");ax12.set(xlabel="Time\n(d)");
+    ax2.set(xlabel="Time");ax4.set(xlabel="Time");ax6.set(xlabel="Time");
 
     # fig.legend(loc='upper right', bbox_to_anchor=(1.0, 0.5))
     fig.legend()
@@ -252,28 +225,33 @@ def plot(filename1,filename2,filename3,filename4):
 PARAMETER & VARIABLE DECLARATION
 """
 
-T=150;dt=0.01;
+T=100;dt=0.01;
 dt_save_state=0.1;
 
 bdatapoints=5
 bmin=0.05
 bmax=0.9
 barray=np.linspace(bmin,bmax,bdatapoints)
-barray=np.array([0.727199,0.727202,0.727201])
-barray=np.array([0.4106108,0.4106109,0.41061099])
-barray=np.array([0.4106108,0.4106109,0.7272029,0.7272030])
+# barray=np.array([0.727199,0.727202,0.727201])
+# barray=np.array([0.4106108,0.4106109,0.41061099])
+# 1.20e-01 3.45e-01 3.36e-01
+# 1.22e-01 3.43e-01 3.03e-01
+# 1.21e-01 3.44e-01 2.55e-01
+
+barray=np.array([0.2,0.5,0.8])
 
 R=1.0 #1.0
-D=1.0 #0.5
-E=1.0 #0.5
+D=1.0 #1.0
+E=1.0 #1.0
 b=bmin
 K=4.5 #4.5
 Kmin=0.5 #0.5
 Q=1.0
 param=[b,K,R,D,E,Q,Kmin]
-initial_state=np.array([0.01,0.98,0.01])
+initial_state=np.array([0.001, 0.98, 0.01])
+# initial_state=np.array([1.20e-01, 3.45e-01, 3.36e-01])
 
-filename=['f1','f2','f3','f4']
+filename=['f1','f2','f3']
 i=0
 for b in barray:
 
@@ -291,4 +269,4 @@ for b in barray:
     i=i+1
 
 print(str(time.time()-t0))
-plot(filename[0],filename[1],filename[2],filename[3])
+plot(filename[0],filename[1],filename[2])
