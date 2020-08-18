@@ -44,7 +44,7 @@ Knew = f(bnew)
 sns.set_context('paper')
 style.use('seaborn-paper')
 
-fig, (ax1) = plt.subplots(1, 1)
+fig, (ax1) = plt.subplots(1, 1,figsize=(7,5.25))
 
 bnew=np.concatenate((b[:maxind+1],bnew))
 Knew=np.concatenate((K[:maxind+1],Knew))
@@ -61,7 +61,7 @@ ax1.fill_between(bnew, 5 , Knew,alpha=0.9)
 #,color='black'
 ax1.plot(bnew[maxind:],Knew[maxind:],linewidth=0.5)
 ax1.annotate('Collapse equilibrium', xy=(0.6, 3.5))
-ax1.annotate('Viable equilibrium', xy=(0.275, 1.5))
+ax1.annotate('Viable equilibrium', xy=(0.285, 1.5))
 
 # point1 = [bnew[0], 0.5+4.5*(1-bnew[0])]
 # point2 = [bnew[-1], 0.5+4.5*(1-bnew[-1])]
@@ -81,5 +81,5 @@ ax1.annotate(s=r'$\Delta \beta$', xy=(0.55,0.85))
 ax1.set_ylabel(r'$K$')
 ax1.set_xlabel(r'$\beta$')
 sns.despine()
-
+plt.savefig("equilibria_2Dstrategy.jpg",dpi=1000)
 plt.show()

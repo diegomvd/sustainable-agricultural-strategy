@@ -274,13 +274,15 @@ def plotful(data1,data2,dataarraydiff,par_arr):
     Darray=np.array(par_arr[1])
     D,R=np.meshgrid(Darray,Rarray)
 
-    fig = plt.figure()
+    fig = plt.figure(figsize=(7,5.25))
     # ax1 = plt.subplot(221)
     # ax2 = plt.subplot(223)
     # ax3 = plt.subplot(122)
     ax1 = plt.subplot(221)
     ax2 = plt.subplot(222)
     ax3 = plt.subplot(212)
+
+    plt.subplots_adjust(hspace=0.4, wspace=0.4)
 
     origin='lower'
     ax1.set_facecolor('0.2')
@@ -338,6 +340,9 @@ def plotful(data1,data2,dataarraydiff,par_arr):
     #sns.despine()
     ax3.legend(loc='upper right', bbox_to_anchor=(0.9, 0.9))
     sns.despine()
+
+    plt.savefig("critical_landuse.jpg",dpi=1000)
+
     plt.show()
 
 
@@ -363,6 +368,7 @@ Rarray=np.arange(Rmin,Rmax,Rdatapoints)
 Dmin=0.5;Dmax=2.0;Ddatapoints=0.05
 Darray=np.arange(Dmin,Dmax,Ddatapoints)
 par_arr=[Rarray,Darray]
+
 dataarray=np.empty((len(Rarray),len(Darray),))
 dataarray[:]=np.nan
 
@@ -521,5 +527,9 @@ change=np.isnan(dataarraydiff)
 dataarraydiff[change]=0
 np.savetxt('deltabeta.dat',dataarraydiff)
 
+# dataarray=np.loadtxt("betacrit1.dat")
+# dataarray2=np.loadtxt("betacrit2.dat")
+# dataarraydiff=np.loadtxt("deltabeta.dat")
+
 plotful(dataarray,dataarray2,dataarraydiff,par_arr)
-plot(dataarraydiff,par_arr)
+# plot(dataarraydiff,par_arr)

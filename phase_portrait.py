@@ -543,7 +543,7 @@ ib4=np.where(datacritical1[:,0]>0.75)[0][0]
 iblist=[ib1,ib2,ib3,ib4]
 
 nrow = 2;ncol=2;
-fig, axs = plt.subplots(nrows=nrow, ncols=ncol, sharex='col',sharey='row',gridspec_kw={'hspace':0.4,'wspace': 0.2})
+fig, axs = plt.subplots(nrows=nrow, ncols=ncol, sharex='col',sharey='row',gridspec_kw={'hspace':0.4,'wspace': 0.2},figsize=(7,5.25))
 
 sns.set_style("ticks")
 
@@ -638,4 +638,5 @@ for i in range(len(iblist)):
 
 #fig.legend(loc='upper right', bbox_to_anchor=(0.9, 0.9))
 sns.despine()
+plt.savefig("phase_portrait.jpg",dpi=1000)
 plt.show()

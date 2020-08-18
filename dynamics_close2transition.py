@@ -4,7 +4,7 @@
 TEMPORAL DYANMICS CLOSE TO BOTH CRITICAL TRANSITIONS: APPARITION OF LARGE AMPLITUDE
 OSCILLATIONS AND LIMIT CYCLES.
 CRITICAL VALUES FOR THE AND USE STRATEGY ARE INPUTED MANUALLY, HENCE PREVIOUS
-CALCULATION OF THE BIFURCATION CURVES IS NEEDED. 
+CALCULATION OF THE BIFURCATION CURVES IS NEEDED.
 
 model variables:
 pop=human population density
@@ -165,7 +165,7 @@ def plot(filename1,filename2,filename3,filename4):
 
     sns.set_style("ticks")
 
-    fig, ((ax1, ax3, ax5, ax7), (ax2, ax4, ax6, ax8), (ax9, ax10, ax11, ax12)) = plt.subplots(3,4,sharex='col',sharey='row',gridspec_kw={'hspace':0.1,'wspace': 0.1})
+    fig, ((ax1, ax3, ax5, ax7), (ax2, ax4, ax6, ax8), (ax9, ax10, ax11, ax12)) = plt.subplots(3,4,sharex='col',sharey='row',gridspec_kw={'hspace':0.1,'wspace': 0.1},figsize=(7,5.25))
 ################################################################################
 
     time=data2plot1[:,0]
@@ -267,6 +267,7 @@ def plot(filename1,filename2,filename3,filename4):
     # fig.legend(loc='upper right', bbox_to_anchor=(1.0, 0.5))
     fig.legend()
     sns.despine()
+    plt.savefig("dynamics_close2transition.jpg",dpi=1000)
     plt.show()
     plt.savefig('testremote.png')
     plt.close()

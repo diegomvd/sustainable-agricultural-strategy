@@ -161,7 +161,7 @@ def plot(filename1,filename2,filename3):
 
     sns.set_style("ticks")
 
-    fig, ((ax1, ax3, ax5), (ax2, ax4, ax6)) = plt.subplots(2,3,sharex='col',sharey='row',gridspec_kw={'hspace':0.01,'wspace': 0.1})
+    fig, ((ax1, ax3, ax5), (ax2, ax4, ax6)) = plt.subplots(2,3,sharex='col',sharey='row',gridspec_kw={'hspace':0.01,'wspace': 0.1},figsize=(7,5.25))
 ################################################################################
 
     time=data2plot1[:,0]
@@ -217,6 +217,7 @@ def plot(filename1,filename2,filename3):
     # fig.legend(loc='upper right', bbox_to_anchor=(1.0, 0.5))
     fig.legend()
     sns.despine()
+    plt.savefig("dynamics.jpg",dpi=1000)
     plt.show()
     plt.savefig('testremote.png')
     plt.close()

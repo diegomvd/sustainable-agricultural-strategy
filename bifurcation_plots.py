@@ -401,7 +401,7 @@ def findSSbeta(param,db_save):
 def PlotBifurcation(data1,data2,data3,data4):
     sns.set_context('paper')
     style.use('seaborn-paper')
-    fig, ((ax1,ax2),(ax3,ax4),(ax5,ax6),(ax7,ax8)) = plt.subplots(4,2,sharex='row',sharey='col',gridspec_kw={'hspace':0.04,'wspace': 0.2})
+    fig, ((ax1,ax2),(ax3,ax4),(ax5,ax6),(ax7,ax8)) = plt.subplots(4,2,sharex='row',sharey='col',gridspec_kw={'hspace':0.04,'wspace': 0.2},figsize=(7,5.25))
     sns.set_style("ticks")
 
     b=data1[0][:,0]
@@ -724,6 +724,9 @@ def PlotBifurcation(data1,data2,data3,data4):
     # ax5.set_title(r"$r=1.0$");
     # ax7.set_title(r"$r=1.25$");
     #plt.tight_layout()
+
+    plt.savefig("bifurcation_plots.jpg",dpi=1000)
+
     plt.show()
     plt.close()
 
